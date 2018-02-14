@@ -1,0 +1,86 @@
+{% extends 'home/base.html' %}
+{% block actoractive %}active{% endblock actoractive %}
+{% block body %}
+<div class="col-sm-12 container-fluid thumbnail">
+	<div class="tabpills">
+	<ul class="nav nav-pills">
+    <li class="active"><a data-toggle="tab" href="#actor">Actor</a></li>
+    <li><a data-toggle="tab" href="#search">Search</a></li>
+	<input type="search" name="search" placeholder="search" style="float: right;  ">
+	</ul>
+	</div>
+  <div class="tab-content">
+    <div id="actor" class="tab-pane fade in active">
+    	<hr>
+      <h3>movies that starts with Alphabet {{letter}}</h3><br>
+      {% for movie in object_list %}
+            <div class="col-sm-12 thumbnail">
+                  <!-- <img src="..." alt="..."> -->
+                    <a href="{% url 'home:actor_detail' movie.id %}"> <h3> {{movie.movie_title}} </h3></a>
+                    <p><h3>{{movie.role}}</h3></p>
+                    <p><a href="{% url 'home:actor_detail' movie.id %}" class="btn btn-primary" role="button">View</a> </p>
+            </div>
+            {% endfor %}
+            <div class="pagination thumbnail">
+                <span class="step-links">
+                    <center>
+                    {% if object_list.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ object_list.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+                    </span>
+
+                    {% if object_list.has_next %}
+                        <a href="?page={{ object_list.next_page_number }}">next</a>
+                        <a href="?page={{ object_list.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                    </center>
+                </span>
+            </div>
+    </div>
+    <div id="search" class="tab-pane fade">
+	  <hr>
+		<table class="table table-striped">
+      <tr>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'A' %}">A</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'B' %}">B</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'C' %}">C</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'D' %}">D</a></td>
+      </tr>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'E' %}">E</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'F' %}">F</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'G' %}">G</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'H' %}">H</a></td>
+      </tr>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'I' %}">I</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'J' %}">J</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'K' %}">K</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'L' %}">L</a></td>
+      </tr>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'M' %}">M</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'N' %}">N</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'O' %}">O</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'P' %}">P</a></td>
+      </tr>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'Q' %}">Q</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'R' %}">R</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'S' %}">S</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'T' %}">T</a></td>
+      </tr>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'U' %}">U</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'V' %}">V</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'W' %}">W</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'X' %}">X</a></td>
+      </tr>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'Y' %}">Y</a></td>
+      <td class="col-xs-3"><a href="{% url 'home:actor_select' 'Z' %}">Z</a></td>
+      </tr>
+    </table>
+    </div>
+ </div>
+
+</div>
+{% endblock %}

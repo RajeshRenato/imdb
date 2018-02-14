@@ -1,0 +1,227 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IMDB</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css'%}" />
+	<style type="text/css">
+
+		}
+		#preloader {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		}
+		#loader {
+		display: block;
+		position: relative;
+		left: 50%;
+		top: 50%;
+		width: 150px;
+		height: 150px;
+		margin: -75px 0 0 -75px;
+		border-radius: 50%;
+		border: 3px solid transparent;
+		border-top-color: #9370DB;
+		-webkit-animation: spin 2s linear infinite;
+		animation: spin 2s linear infinite;
+		}
+		#loader:before {
+		content: "";
+		position: absolute;
+		top: 5px;
+		left: 5px;
+		right: 5px;
+		bottom: 5px;
+		border-radius: 50%;
+		border: 3px solid transparent;
+		border-top-color: #BA55D3;
+		-webkit-animation: spin 3s linear infinite;
+		animation: spin 3s linear infinite;
+		}
+		#loader:after {
+		content: "";
+		position: absolute;
+		top: 15px;
+		left: 15px;
+		right: 15px;
+		bottom: 15px;
+		border-radius: 50%;
+		border: 3px solid transparent;
+		border-top-color: #FF00FF;
+		-webkit-animation: spin 1.5s linear infinite;
+		animation: spin 1.5s linear infinite;
+		}
+		@-webkit-keyframes spin {
+		0%   {
+		-webkit-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		transform: rotate(0deg);
+		}
+		100% {
+		-webkit-transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+		transform: rotate(360deg);
+		}
+		}
+		@keyframes spin {
+		0%   {
+		-webkit-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		transform: rotate(0deg);
+		}
+		100% {
+		-webkit-transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+		transform: rotate(360deg);
+		}
+		}
+	</style>
+</head>
+<body onload="myFunction()">
+	<div id="preloader" style="color: black; height: 100%; width: 100%; position:absolute;">
+	<div id="loader"></div>
+	</div>
+<div style="display:none;" id="myDiv" class="animate-bottom">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{% url 'home:index' %}">IMDB</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="topNavBar">
+			<ul class="navbar-nav nav">
+				<li class="active">
+					<a href="{% url 'home:index' %}">
+						<span class="glyphicon glyphicon-home icon" aria-hidden="true"></span>&nbsp
+						Home
+					</a>
+				</li>
+				<li class="{% block moviesactive %}{% endblock moviesactive %}">
+					<a href="{% url 'home:movieslist' %}">
+						<span class="glyphicon glyphicon-film icon" aria-hidden="true"></span>&nbsp
+						Movies 
+					</a>
+				</li>
+				<li class="{% block rateactive %}{% endblock rateactive %}">
+					<a href="{% url 'home:rating' %}">
+						<span class="glyphicon glyphicon-stats icon" aria-hidden="true"></span>&nbsp
+						Rating 
+					</a>
+				</li>
+				<li class="{% block actoractive %}{% endblock actoractive %}">
+					<a href="{% url 'home:actor' %}">
+						<span class="fa fa-male icon1" aria-hidden="true"></span>&nbsp
+						Actor 
+					</a>
+				</li>
+				<li class="{% block actressactive %}{% endblock actressactive %}">
+					<a href="{% url 'home:actress' %}">
+						<span class="fa fa-female icon1" aria-hidden="true"></span>&nbsp
+						Actress 
+					</a>
+				</li>
+				<li class="{% block directoractive %}{% endblock directoractive %}">
+					<a href="{% url 'home:directors' %}">
+						<span class="fa fa-user-secret icon1" aria-hidden="true"></span>&nbsp
+						Director 
+					</a>
+				</li>
+				<li class="{% block genresactive %}{% endblock genresactive %}">
+					<a href="{% url 'home:genres' %}">
+						<span class="fa fa-user-secret icon1" aria-hidden="true"></span>&nbsp
+						Genres 
+					</a>
+				</li>
+			</ul>
+
+			<form class="navbar-form navbar-left" role="search" method="get" action="#">
+				<input class="form-control" type="text" name="q">
+				<button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+			</form>
+			
+			<ul class="navbar-nav nav navbar-right">
+				<li>
+					<a href="#">
+						<span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp
+						Logout 
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid">
+		<br><br><br><br>
+ <div class="row">
+    <div class="col-sm-2 col-lg-2">
+      <nav class="navbar navbar-default navbar-fixed-side">
+      	<ul>
+      		<li><a href="{% url 'home:plots' %}"><span class="glyphicon glyphicon-bell"></span>PLOTS</a>
+      		</li>
+      		<li><a href="{% url 'home:plots' %}"><span class="glyphicon glyphicon-bell"></span>PLOTS</a>
+      		</li>
+      		<li><a href="{% url 'home:plots' %}"><span class="glyphicon glyphicon-bell"></span>PLOTS</a>
+      		</li>
+        </ul>
+      </nav>
+      <nav class="navbar navbar-default navbar-fixed-side">
+      </nav>
+    </div> 
+<div class="col-sm-8 col-lg-8 bodycontent thumbnail">
+	<div class="container-fluid"><h4><small>HOME</small></h4>
+		<hr>
+	</div>
+<div class="card container-fluid col-sm-10 col-sm-offset-1">	
+	<p>IMDb, formerly known as Internet Movie Database, is an online database of information related to films, television programs and video games, including cast, production crew, fictional characters, biographies, plot summaries, trivia and reviews, operated by IMDb.com, Inc., a subsidiary of Amazon. As of December 2017, IMDb has approximately 4.7 million titles (including episodes), 8.3 million personalities in its database, as well as 83 million registered users.</p><br>
+	<p>The site enables registered users to submit new material and edits to existing entries. Although most data is checked, especially when being submitted by new users before going live, the system has been open to errors, and some sections are even abused. Users with a proven track record of submitting factual data are given instant approval for minor additions such as filming locations, however, Image, name, character name, plot summaries, and title changes are screened before publication, and usually take between 24-72 hours to appear. Users are also invited to rate any film on a scale of 1 to 10, and the totals are converted into a weighted mean-rating that is displayed beside each title, with online filters employed to deter ballot-stuffing.</p><br>
+	<p>Anyone with an internet connection can view the movie and talent pages of IMDb. A registration process is necessary however, to contribute info to the site. A registered user chooses a site name for themselves, and is given a profile page. This profile page also shows how long a registered user has been a member, as well as personal movie ratings (should the user decide to display them), and is also awarded badges representing how many contributions any particular registered user has submitted. These badges range from total contributions made, to independent categories such as photos, trivia, bios, etc. If a registered user or visitor happens to be in the entertainment industry, and has an IMDb page, that user/visitor can add photos to that page by enrolling in IMDbPRO.</p>
+	  <br><hr/>
+	<p>Anyone with an internet connection can view the movie and talent pages of IMDb. A registration 
+	process is necessary however, to contribute info to the site. A registered user chooses a site name for themselves, and is given a profile page. This profile page also shows how long a registered user has been a member, as well as personal movie ratings (should the user decide to display them), and is also awarded badges representing how many contributions any particular registered user has submitted. These badges range from total contributions made, to independent categories such as photos, trivia, bios, etc. If a registered user or visitor happens to be in the entertainment industry, and has an IMDb page, that user/visitor can add photos to that page by enrolling in IMDbPRO.</p>	
+	<br><br><br><br>	
+</div>
+</div>
+    <div class="col-sm-2 col-lg-2">
+      <nav class="navbar navbar-default navbar-fixed-side ">
+        <img src="{% static 'images/side.jpg'%}">
+      </nav>
+      <nav class="navbar navbar-default navbar-fixed-side">
+      </nav>
+    </div>
+</div>
+ </div>
+<div class="row container-fluid">
+	<footer class="fixed-footer">
+		<p>Copyright &copy; 2017 IMDB_API</p>
+	</footer>
+</div>
+	<br><br><br>
+</div>
+</body>
+<script>
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 3000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+</script>
+</html>

@@ -1,0 +1,67 @@
+body{
+	background: white url("images/bgimg.jpg")
+}
+
+.navbar
+{
+	border-radius: 0;
+}
+
+.navbar-brand{
+	font-family: 'Satisfy', cursive;
+}
+
+img{
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.thumbnail, .navbar{
+	box-shadow: 0 0 10px grey;
+    padding:0 15px 0 15px;
+}
+.icon{
+	font-size: 18px;
+}
+
+a{
+
+	text-decoration: none;
+
+}
+a:hover{
+	text-decoration: none;
+	/*cursor: progress;*/
+}
+
+.icon1{
+	font-size: 20px;
+}
+
+ul{
+	list-style: none;"
+}
+.bodycontent{
+	opacity: 0.8;
+}
+footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+.fixed-footer{
+		position: fixed;
+		width: 100%;        
+        background: #333;
+        padding: 10px 0;
+        color: #fff;
+        text-align: center;
+        bottom: 0;}
+
+.sideley{
+	text-align: center;
+}
+
+.center{
+	text-align: center;
+}

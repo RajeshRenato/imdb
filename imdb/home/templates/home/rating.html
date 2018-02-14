@@ -1,0 +1,175 @@
+{% extends 'home/base.html' %}
+{% block rateactive %}active{% endblock rateactive %}
+{% block body %}
+<div class="col-sm-12 container-fluid thumbnail">
+    <div class="tabpills">
+        <ul class="nav nav-pills">
+        <li class="active"><a data-toggle="tab" href="#rating">Rating</a></li>
+        <li><a data-toggle="tab" href="#search">Search</a></li>
+        <!-- <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+        <li><a data-toggle="tab" href="#menu3">Menu 3</a></li> -->
+        <input type="search" name="search" placeholder="search" style="float: right;  ">
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div id="rating" class="tab-pane fade in active">
+            <hr>
+            {% for movie in object_list %}
+            <div class="col-sm-12 thumbnail">
+                  <!-- <img src="..." alt="..."> -->
+                    <a href="{% url 'home:rating_detail' movie.id %}"> <h3> {{movie.movie_title}} </h3></a>
+                    <p><h3>{{movie.rating}} /10</h3></p>
+                    <p><a href="{% url 'home:rating_detail' movie.id %}" class="btn btn-primary" role="button">View</a> </p>
+            </div>
+            {% endfor %}
+            <div class="pagination thumbnail">
+                <span class="step-links">
+                    <center>
+                    {% if object_list.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ object_list.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+                    </span>
+
+                    {% if object_list.has_next %}
+                        <a href="?page={{ object_list.next_page_number }}">next</a>
+                        <a href="?page={{ object_list.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                    </center>
+                </span>
+            </div>
+        </div>
+        <div id="search" class="tab-pane fade">
+            <hr>
+            <table class="table table-striped">
+              <tr>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '1.0' %}">1.0</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '1.1' %}">1.1</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '1.2' %}">1.2</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '1.3' %}">1.3</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '1.4' %}">1.4</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '1.5' %}">1.5</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '1.6' %}">1.6</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '1.7' %}">1.7</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '1.8' %}">1.8</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '1.9' %}">1.9</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '2.0' %}">2.0</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '2.1' %}">2.1</a></td>
+              </tr><tr>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '2.2' %}">2.2</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '2.3' %}">2.3</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '2.4' %}">2.4</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '2.5' %}">2.5</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '2.6' %}">2.6</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '2.7' %}">2.7</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '2.8' %}">2.8</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '2.9' %}">2.9</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '3.0' %}">3.0</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '3.1' %}">3.1</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '3.2' %}">3.2</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '3.3' %}">3.3</a></td>
+              </tr><tr>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '3.4' %}">3.4</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '3.5' %}">3.5</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '3.6' %}">3.6</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '3.7' %}">3.7</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '3.8' %}">3.8</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '3.9' %}">3.9</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '4.0' %}">4.0</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '4.1' %}">4.1</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '4.2' %}">4.2</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '4.3' %}">4.3</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '4.4' %}">4.4</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '4.5' %}">4.5</a></td>
+              </tr><tr>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '4.6' %}">4.6</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '4.7' %}">4.7</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '4.8' %}">4.8</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '4.9' %}">4.9</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '5.0' %}">5.0</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '5.1' %}">5.1</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '5.2' %}">5.2</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '5.3' %}">5.3</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '5.4' %}">5.4</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '5.5' %}">5.5</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '5.6' %}">5.6</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '5.7' %}">5.7</a></td>
+              </tr><tr>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '5.8' %}">5.8</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '5.9' %}">5.9</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '6.0' %}">6.0</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '6.1' %}">6.1</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '6.2' %}">6.2</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '6.3' %}">6.3</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '6.4' %}">6.4</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '6.5' %}">6.5</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '6.6' %}">6.6</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '6.7' %}">6.7</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '6.8' %}">6.8</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '6.9' %}">6.9</a></td>
+              </tr><tr>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '7.0' %}">7.0</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '7.1' %}">7.1</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '7.2' %}">7.2</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '7.3' %}">7.3</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '7.4' %}">7.4</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '7.5' %}">7.5</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '7.6' %}">7.6</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '7.7' %}">7.7</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '7.8' %}">7.8</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '7.9' %}">7.9</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '8.0' %}">8.0</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '8.1' %}">8.1</a></td>
+              </tr><tr>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '8.2' %}">8.2</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '8.3' %}">8.3</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '8.4' %}">8.4</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '8.5' %}">8.5</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '8.6' %}">8.6</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '8.7' %}">8.7</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '8.8' %}">8.8</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '8.9' %}">8.9</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '9.0' %}">9.0</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '9.1' %}">9.1</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '9.2' %}">9.2</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '9.3' %}">9.3</a></td>
+              </tr><tr>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '9.4' %}">9.4</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '9.5' %}">9.5</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '9.6' %}">9.6</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '9.7' %}">9.7</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '9.8' %}">9.8</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '9.9' %}">9.9</a></td>
+              <td class="col-xs-1"><a href="{% url 'home:rating_select' '10.0' %}">10.0</a></td>
+              <!-- <td class="col-xs-1"><input class="opacity" name="text" type="submit" value="9.3"></td> -->
+              </tr>
+            </table>
+            <hr>
+            <center><h3>select between ratings</h3></center>
+            <br>
+            <div class="col-sm-8 col-xs-offset-2">
+            <div class="col-xs-5">
+              <select style="width: 200px;" required>
+                {% for i in alp %}
+                <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="col-xs-2"><center><p>&#8644;</p></center></div>
+            <div class="col-xs-5">
+              <select style="width: 200px;" required>
+                {% for i in alp %}
+                <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+              </select>
+            </div><br><br>
+            <center>
+            <a href="{% url 'home:rating_betw' '1.0' '2.0' %}">search</a></center>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}IMDB{% endblock title%}</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css'%}" />
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{% url 'home:index' %}">IMDB</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="topNavBar">
+			<ul class="navbar-nav nav">
+				<li class="{% block homeactive %}{% endblock homeactive %}">
+					<a href="{% url 'home:index' %}">
+						<span class="glyphicon glyphicon-home icon" aria-hidden="true"></span>&nbsp
+						Home
+					</a>
+				</li>
+				<li class="{% block moviesactive %}{% endblock moviesactive %}">
+					<a href="{% url 'home:movieslist' %}">
+						<span class="glyphicon glyphicon-film icon" aria-hidden="true"></span>&nbsp
+						Movies 
+					</a>
+				</li>
+				<li class="{% block rateactive %}{% endblock rateactive %}">
+					<a href="{% url 'home:rating' %}">
+						<span class="glyphicon glyphicon-stats icon" aria-hidden="true"></span>&nbsp
+						Rating 
+					</a>
+				</li>
+				<li class="{% block actoractive %}{% endblock actoractive %}">
+					<a href="{% url 'home:actor' %}">
+						<span class="fa fa-male icon1" aria-hidden="true"></span>&nbsp
+						Actor 
+					</a>
+				</li>
+				<li class="{% block actressactive %}{% endblock actressactive %}">
+					<a href="{% url 'home:actress' %}">
+						<span class="fa fa-female icon1" aria-hidden="true"></span>&nbsp
+						Actress 
+					</a>
+				</li>
+				<li class="{% block directoractive %}{% endblock directoractive %}">
+					<a href="{% url 'home:directors' %}">
+						<span class="fa fa-user-secret icon1" aria-hidden="true"></span>&nbsp
+						Director 
+					</a>
+				</li>
+				<li class="{% block genresactive %}{% endblock genresactive %}">
+					<a href="{% url 'home:genres' %}">
+						<span class="fa fa-user-secret icon1" aria-hidden="true"></span>&nbsp
+						Genres 
+					</a>
+				</li>
+			</ul>
+
+			<form class="navbar-form navbar-left" role="search" method="get" action="#">
+				<input class="form-control" type="text" name="q">
+				<button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+			</form>
+			
+			<ul class="navbar-nav nav navbar-right">
+				<li>
+					<a href="#">
+						<span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp
+						Logout 
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid">
+	<br><br><br><br>
+ <div class="row">
+    <div class="col-sm-2 col-lg-2">
+      <nav class="navbar nav-pills navbar-default sidley navbar-fixed-side">
+      	<ul>
+      		<li><a href="{% url 'home:plots' %}"><span class="glyphicon glyphicon-bell"></span>PLOTS</a>
+      		</li>
+      		<li><a href="{% url 'home:plots' %}"><span class="glyphicon glyphicon-bell"></span>PLOTS</a>
+      		</li>
+      		<li><a href="{% url 'home:plots' %}"><span class="glyphicon glyphicon-bell"></span>PLOTS</a>
+      		</li>
+        </ul>
+      </nav>
+      <nav class="navbar navbar-default navbar-fixed-side">
+      </nav>
+    </div> 
+    <div class="col-sm-8 col-lg-8 bodycontent">
+      	{% block body %}
+
+		{% endblock body %}
+    </div>
+    <div class="col-sm-2 col-lg-2">
+      <nav class="navbar navbar-default navbar-fixed-side ">
+        <img src="{% static 'images/side.jpg'%}">
+      </nav>
+      <nav class="navbar navbar-default navbar-fixed-side">
+      </nav>
+    </div>
+ </div>
+<br><br><br>
+</div>
+<div class="row container-fluid">
+	<footer class="fixed-footer">
+		<p>Copyright &copy; 2017 IMDB_API</p>
+	</footer>
+</div>
+</body>
+</html>
